@@ -4,7 +4,6 @@ module('Balanced.Marketplaces.hold_transaction', {
             var marketplace = Balanced.Marketplace.find('/v1/marketplaces/MP1');
             var router = Balanced.Router.create();
 
-            
             router.transitionTo('marketplace.hold_transaction', marketplace);
         });
     }, teardown: function () {
