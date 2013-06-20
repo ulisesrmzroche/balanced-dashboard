@@ -52,10 +52,15 @@ require('app/models/initial_deposit');
 require('app/lib/auth');
 
 /*
- * Views layer.
- * Ember accomplishes a lot in its templates and
- * Views are only necessary if you have view-specific
- * programming to do.
+    VIEW LAYER
+    
+    Ember accomplishes a lot with its template layer, so you'll typically only need
+    views for the following reasons: 
+
+        * When you need sophisticated handling of user events
+        * When you want to create a re-usable component
+
+    These requirements may often be present at the same time.
  */
 require('app/views/_base');
 require('app/views/alert_view');
@@ -67,6 +72,9 @@ require('app/views/embedded_iframe');
 require('app/views/login');
 require('app/views/forgot_password'); // depends on login
 require('app/views/search');
+
+// View.Components
+require('app/views/components/modal_dialog_component');
 
 require('app/views/marketplace/marketplace');
 require('app/views/marketplace/marketplace_index');
