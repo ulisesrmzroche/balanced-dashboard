@@ -75,6 +75,7 @@ require('app/views/search');
 
 // View.Components
 require('app/views/components/modal_dialog_component');
+require('app/views/components/frontend_devtools_component');
 
 require('app/views/marketplace/marketplace');
 require('app/views/marketplace/marketplace_index');

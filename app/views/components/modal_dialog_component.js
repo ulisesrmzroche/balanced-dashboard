@@ -11,6 +11,10 @@ Balanced.ModalDialogComponent = Balanced.View.extend({
         Balanced.$(this.get("element")).modal('hide');
     },
 
+    close: function() {
+        this.router.transitionTo("marketplace");
+    },
+
     heading: null,
     bodyCopy: null
 });

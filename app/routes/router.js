@@ -132,6 +132,7 @@ require('app/routes/marketplaces/funding_instruments');
 require('app/routes/marketplaces/cards');
 require('app/routes/marketplaces/index');
 require('app/routes/marketplaces/initial_deposit');
+require('app/routes/marketplaces/hold_transaction_route');
 require('app/routes/marketplaces/invoices');
 require('app/routes/marketplaces/logs');
 require('app/routes/marketplaces/show');
