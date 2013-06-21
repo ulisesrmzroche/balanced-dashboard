@@ -1,7 +1,5 @@
-Balanced.ModalDialogComponent = Balanced.View.extend({
-    tagName: 'div',
-    classNames: "modal-dialog-component modal hide".w(),
-    templateName: "components/modal_dialog_component",
+Balanced.ModalView = Balanced.View.extend({
+    layoutName: "_modal",
 
     didInsertElement: function(){
         Balanced.$(this.get("element")).modal('show');
@@ -16,5 +14,4 @@ Balanced.ModalDialogComponent = Balanced.View.extend({
     },
 
     heading: null,
-    bodyCopy: null
 });

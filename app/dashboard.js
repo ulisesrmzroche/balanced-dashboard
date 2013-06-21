@@ -72,10 +72,7 @@ require('app/views/embedded_iframe');
 require('app/views/login');
 require('app/views/forgot_password'); // depends on login
 require('app/views/search');
-
-// View.Components
-require('app/views/components/modal_dialog_component');
-require('app/views/components/frontend_devtools_component');
+require('app/views/modal');
 
 require('app/views/marketplace/marketplace');
 require('app/views/marketplace/marketplace_index');

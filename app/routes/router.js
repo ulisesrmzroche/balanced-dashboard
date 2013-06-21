@@ -60,7 +60,7 @@ Balanced.Router.map(function () {
 
             this.route('transactions', { path: '/transactions' });
             this.route('initial_deposit', { path: '/initial_deposit' });
-            this.route('hold_transaction');
+            this.route('hold');
             this.route('funding_instruments', { path: '/funding_instruments' });
             makeNestedResource(this, 'customers', 'customer');
             makeNestedResource(this, 'cards', 'card');
