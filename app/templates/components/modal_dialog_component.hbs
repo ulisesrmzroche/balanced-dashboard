@@ -1,10 +1,12 @@
 <header class="modal-header">
-    <h1 class="heading">{{view.heading}}</h1>
+    <h2 class="heading">{{view.heading}}</h2>
 </header>
 
-<p class='body-copy'>{{view.bodyCopy}}</p>
+<div class="modal-body">
+    <p class='body-copy'>{{view.bodyCopy}}</p>
+</div>
 
 <footer class="modal-footer user-actions">
-    <a href="#" class="close">No</a>
-    <a href="#" class="confirm">Yes</a>
+    <button class="btn danger" data-dismiss="modal" aria-hidden="true">No</button>      
+    <button class="btn">Yes</button>
 </footer>

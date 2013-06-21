@@ -12,9 +12,10 @@
             });
             this.$modal_dialog_component = $("#marketplace-hold-transaction").find(".modal-dialog-component");    
         }, teardown: function () {
-
+            Ember.run(function(){
+                Balanced.reset();    
+            });
         }
-
     });
 
     test('renders a modal dialog', function (assert) {
@@ -33,6 +34,7 @@
 
         assert.ok($modal_dialog_heading.length, 'the heading exists');
         assert.strictEqual($modal_dialog_heading.text(), "Void Hold",  "the heading has the right text");
+        assert.strictEqual($modal_dialog_heading.css("color"), "rgb(255, 255, 255)",  "the heading should be white");
     });
 
     test('modal dialog renders the body copy successfully', function(assert){
@@ -40,17 +42,20 @@
 
         assert.ok($modal_dialog_body_copy.length, 'The body copy exists');
         assert.strictEqual($modal_dialog_body_copy.text(), "Are you sure you want to cancel this hold?",  "The body copy has the right text");
+        assert.strictEqual($modal_dialog_body_copy.css("font-weight"), 400, "The body copy should be bold");
+        assert.strictEqual($modal_dialog_body_copy.css("color"), "rgb(0, 0, 0)", "The body copy should be black");
+        assert.strictEqual($modal_dialog_body_copy.css("font-size"), "18px", "The font size should be large");
     });
 
     test('modal dialog can be confirmed', function(assert){
-        var $success_action = this.$modal_dialog_component.find(".user-actions").find(".confirm");
+        var $success_action = this.$modal_dialog_component.find(".user-actions").find(".btn").not(".danger");
 
         assert.ok($success_action.length, 'The confirm action exists');
         assert.strictEqual($success_action.text(), "Yes", "The confirm action has the right text");
     });
 
     test('modal dialog can be closed', function(assert){
-        var $close_action = this.$modal_dialog_component.find(".user-actions").find(".close");
+        var $close_action = this.$modal_dialog_component.find(".user-actions").find(".danger");
 
         assert.ok($close_action.length, 'Close action exists');
         assert.strictEqual($close_action.text(), "No", "The close action has the right text");
