@@ -1,4 +1,4 @@
-Balanced.MarketplaceHoldTransactionRoute = Balanced.Route.extend({
+Balanced.MarketplaceHoldRoute = Balanced.Route.extend({
     events: {
         close: function(){
             this.transitionTo("marketplace");

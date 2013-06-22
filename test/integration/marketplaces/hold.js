@@ -10,7 +10,7 @@
                 router.transitionTo('marketplace.hold', marketplace);
 
             });
-            this.$modal= $("#marketplace-hold-transaction").find(".modal");    
+            this.$modal= $(".modal");    
         }, teardown: function () {
             Ember.run(function(){
                 Balanced.reset();    
