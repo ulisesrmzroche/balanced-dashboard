@@ -24,10 +24,10 @@
     });
 
     test('modal has the right heading', function (assert) {
-        var $modal_heading= this.$modal.find(".modal-header").find(".heading");
+        var $modalHeading= this.$modal.find(".modal-header").find(".heading");
 
-        assert.ok($modal_heading.length, 'the heading should render successfully');
-        assert.strictEqual($modal_heading.text(), "Void Hold",  "the heading should have the right text");
+        assert.ok($modalHeading.length, 'the heading should render successfully');
+        assert.strictEqual($modalHeading.text(), "Void Hold",  "the heading should have the right text");
     });
 
     test('modal has the right prompt', function(assert){
@@ -38,16 +38,16 @@
     });
 
     test('modal dialog can be confirmed', function(assert){
-        var $success_action = this.$modal.find(".user-actions").find(".btn").not(".danger");
+        var $successAction = this.$modal.find(".user-actions").find(".btn").not(".danger");
 
-        assert.ok($success_action.length, 'The confirm action exists');
-        assert.strictEqual($success_action.text(), "Yes", "The confirm action has the right text");
+        assert.ok($successAction.length, 'The confirm action exists');
+        assert.strictEqual($successAction.text(), "Yes", "The confirm action has the right text");
     });
 
     test('modal dialog can be closed', function(assert){
-        var $close_action = this.$modal.find(".user-actions").find(".danger");
+        var $closeAction = this.$modal.find(".user-actions").find(".danger");
 
-        assert.ok($close_action.length, 'Close action exists');
-        assert.strictEqual($close_action.text(), "No", "The close action has the right text");
+        assert.ok($closeAction.length, 'Close action exists');
+        assert.strictEqual($closeAction.text(), "No", "The close action has the right text");
     });
 })();
