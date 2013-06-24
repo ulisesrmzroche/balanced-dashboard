@@ -5,5 +5,6 @@ window.setupTestFixtures = function () {
     require('test/support/fixtures/search_query');
     require('test/support/fixtures/user');
     require('test/support/fixtures/debit');
+    require('test/support/fixtures/holds');
 
 };

@@ -59,6 +59,9 @@ Balanced.HoldsHoldRoute = Balanced.ShowResource.extend({
         } catch (e) {
             //  if not nested under account, this will not work
         }
+    },
+    renderTemplate: function(){
+        this.render("hold/index");
     }
 });
 

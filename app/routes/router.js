@@ -60,15 +60,14 @@ Balanced.Router.map(function () {
 
             this.route('transactions', { path: '/transactions' });
             this.route('initial_deposit', { path: '/initial_deposit' });
-            this.route('hold');
             this.route('funding_instruments', { path: '/funding_instruments' });
             makeNestedResource(this, 'customers', 'customer');
             makeNestedResource(this, 'cards', 'card');
             makeNestedResource(this, 'credits', 'credit');
-            makeNestedResource(this, 'debits', 'debit');
-            makeNestedResource(this, 'holds', 'hold');
+
             makeNestedResource(this, 'invoices', 'invoice');
             makeNestedResource(this, 'logs', 'log');
+            makeNestedResource(this, 'holds', 'hold');
             makeNestedResource(this, 'refunds', 'refund');
 
             this.route('activity', { path: '/activity' });
