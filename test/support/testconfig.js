@@ -1,58 +1,96 @@
 QUnit.testStart(function (test) {
-    var module = test.module ? test.module : '';
-    console.log('#' + module + " " + test.name + ": starting setup.");
 
-    // Display an error if asynchronous operations are queued outside of
-    // Ember.run.  You need this if you want to stay sane.
-    Ember.testing = true;
+    var setupTest = function () {
+       logModuleDetails();
+       Ember.testing = true;
+       setupFakeServer();
+       buildTestingContainer();
+       Ember.run(Balanced, Balanced.advanceReadiness);
+       window.Balanced.onLoad();
+       logSetupComplete();
+    };
 
-    //  we don't actually care about hitting a server
-    Ember.ENV.BALANCED.WWW = 'http://example.org';
+    var setupFakeServer = function(){
+        Ember.ENV.BALANCED.WWW = 'http://example.org';
+    };
 
-    Ember.$('<style>#ember-testing-container { position: absolute; background: white; bottom: 0; right: 0; width: 640px; height: 600px; overflow: auto; z-index: 9999; border: 1px solid #ccc; } #ember-testing { zoom: 50%; }</style>').appendTo('head');
-    Ember.$('<div id="ember-testing-container"><div id="ember-testing"></div></div>').appendTo('body');
+    var setupTestingContainer = function() {
+        Ember.run(function () {
+            window.setupBalanced('#ember-testing');
+            Balanced.Adapter = Balanced.FixtureAdapter.create();
+            window.setupTestFixtures();
 
-    Ember.run(function () {
-        window.setupBalanced('#ember-testing');
-        Balanced.Adapter = Balanced.FixtureAdapter.create();
-        window.setupTestFixtures();
+            Balanced.THROTTLE = 0;
+            Balanced.setupForTesting();
+        });
 
-        Balanced.THROTTLE = 0;
-        Balanced.setupForTesting();
-    });
+    };
 
-    // Set up Ember Auth
-    Ember.run(function () {
-        var userId = '/users/USeb4a5d6ca6ed11e2bea6026ba7db2987';
-        Balanced.Auth.setAuthProperties(
-            true,
-            Balanced.User.find(userId),
-            userId,
-            userId,
-            false);
-    });
+    var setupEmberAuth = function(){
+         Ember.run(function () {
+            var userId = '/users/USeb4a5d6ca6ed11e2bea6026ba7db2987';
+            Balanced.Auth.setAuthProperties(
+                true,
+                Balanced.User.find(userId),
+                userId,
+                userId,
+                false
+            );
+        });
+    };
 
-    Ember.run(function () {
-        Balanced.advanceReadiness();
-    });
+    var buildTestingContainer = function(){
+        Ember.$('<style>#ember-testing-container { position: absolute; background: white; bottom: 0; right: 0; width: 640px; height: 600px; overflow: auto; z-index: 9999; border: 1px solid #ccc; } #ember-testing { zoom: 50%; }</style>').appendTo('head');
+        Ember.$('<div id="ember-testing-container"><div id="ember-testing"></div></div>').appendTo('body');
+        setupTestingContainer();
+        setupEmberAuth();
+        Balanced.injectTestHelpers();
+    };
 
-    Balanced.injectTestHelpers();
+    var logModuleDetails = function(){
+         var module = test.module ? test.module : '';
+         console.log('#' + module + " " + test.name + ": starting setup.");
+    };
 
-    window.Balanced.onLoad();
+    var logSetupComplete = function() {
+         var module = test.module ? test.module : '';
+        console.log('#' + module + " " + test.name + ": setup complete. Starting test");
+    };
 
-    console.log('#' + module + " " + test.name + ": setup complete. Starting test");
+    setupTest();
+
 });
 
 QUnit.testDone(function (test) {
-    var module = test.module ? test.module : '';
-    console.log('#' + module + " " + test.name + ": tearing down.");
+    var teardownTest = function () {
+        logModuleDetails();
+        resetEmber();
+        teardownComplete();
+    }
 
-    Balanced.removeTestHelpers();
-    Ember.$('#ember-testing-container, #ember-testing').remove();
-    Ember.run(Balanced, Balanced.destroy);
-    Balanced = null;
+    var logModuleDetails = function(){
+        var module = getModule();
+        message = '#' + module + " " + test.name + ": tearing down."
+        console.log(message);
+    };
 
-    Ember.testing = false;
+    var getModule = function(){
+        var module = test.module ? test.module : '';
+        return module;
+    };
 
-    console.log('#' + module + " " + test.name + ": done.");
+    var resetEmber = function() {
+        Balanced.removeTestHelpers();
+        Ember.$('#ember-testing-container, #ember-testing').remove();
+        Ember.run(Balanced, Balanced.destroy);
+        Balanced = null;
+        Ember.testing = false;
+    };
+
+    var teardownComplete = function() {
+        var module = getModule();
+        console.log('#' + module + " " + test.name + ": done.");
+    };
+
+    teardownTest();
 });

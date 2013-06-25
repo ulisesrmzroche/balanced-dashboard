@@ -1,0 +1,10 @@
+<h1 class='page-title'>Hold</h1>
+
+
+<button class="btn user-actions void" {{action void}}>Void</button>
+
+{{#if willVoid}}
+    {{#view Balanced.ModalView heading="Void Hold"}}
+        <h3>Are you sure you want to cancel this hold?<h3>
+    {{/view}}
+{{/if}}

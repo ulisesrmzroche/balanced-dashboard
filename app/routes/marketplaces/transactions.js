@@ -42,7 +42,7 @@ Balanced.CreditsCreditRoute = Balanced.ShowResource.extend({
     }
 });
 
-Balanced.HoldsRoute = Balanced.IframeRoute.extend({
+Balanced.HoldsRoute = Balanced.AuthRoute.extend({
     param: 'hold_id',
     title: 'Holds',
     resource: 'holds'
@@ -50,7 +50,7 @@ Balanced.HoldsRoute = Balanced.IframeRoute.extend({
 
 Balanced.HoldsHoldRoute = Balanced.ShowResource.extend({
     param: 'hold_id',
-    title: 'Holds',
+    title: 'Hold',
     resource: 'holds',
     setupController: function (controller, model) {
         this._super(controller, model);
@@ -62,6 +62,11 @@ Balanced.HoldsHoldRoute = Balanced.ShowResource.extend({
     },
     renderTemplate: function(){
         this.render("hold/index");
+    },
+    events: {
+        void: function() {
+            this.get("controller").set("willVoid", true);
+        }
     }
 });
 

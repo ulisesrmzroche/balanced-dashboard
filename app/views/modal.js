@@ -1,6 +1,6 @@
 Balanced.ModalView = Balanced.View.extend({
     layoutName: "_modal",
-
+    classNames: "modal hide".w(),
     didInsertElement: function(){
         Balanced.$(this.get("element")).modal('show');
     },
@@ -10,7 +10,7 @@ Balanced.ModalView = Balanced.View.extend({
     },
 
     close: function() {
-        this.router.transitionTo("marketplace");
+        this.remove();
     },
 
     heading: null,
